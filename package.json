@@ -1,0 +1,12 @@
+{
+  "name": "saas-subscriber-simulation",
+  "version": "1.0.0",
+  "description": "A simple educational simulation to ilustrate the difference betwen acquisition and churn",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
