@@ -50,21 +50,24 @@ function renderChart(data, baselineData, yoyGrowthData) {
                   label: 'Number of Subscribers',
                   data: data,
                   borderColor: 'rgba(75, 192, 192, 1)',
-                  borderWidth: 1
+                  borderWidth: 1,
+                  yAxisID: 'y',
               },
               {
                   label: 'Baseline',
                   data: baselineData,
                   borderColor: 'rgba(211, 211, 211, 1)',
                   borderWidth: 1,
-                  pointRadius: 0
+                  pointRadius: 0,
+                  yAxisID: 'y',
               },
               {
                   label: 'Year-over-Year Growth Rate (%)',
                   data: yoyGrowthData,
                   borderColor: 'rgba(255, 165, 0, 1)',
                   borderWidth: 1,
-                  pointRadius: 0
+                  pointRadius: 0,
+                  yAxisID: 'y1',
               }
           ]
       },
@@ -83,6 +86,20 @@ function renderChart(data, baselineData, yoyGrowthData) {
                       text: 'Total Subscribers'
                   },
                   beginAtZero: true
+              },
+              y1: {
+                  type: 'linear',
+                  position: 'right',
+                  title: {
+                      display: true,
+                      text: 'Growth Rate (%)'
+                  },
+                  beginAtZero: false,
+                  min: -20,
+                  max: 80,
+                  grid: {
+                      drawOnChartArea: false,
+                  },
               }
           }
       }
