@@ -11,12 +11,12 @@
     <div class="flex flex-col items-center">
         <label class="mb-4">
           Acquisition Growth (%):
-          <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="acquisitionGrowth" min="0" max="5" step="0.1" value="1" oninput="updateAcquisitionOutput();" onmouseup="updateChart();" />
+          <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="acquisitionGrowth" min="0" max="5" step="0.1" value="1.5" oninput="updateAcquisitionOutput();" onmouseup="updateChart();" />
           <output class="ml-2" id="acquisitionOutput">1</output>%
         </label>
         <label class="mb-4">
           Churn Reduction (%):
-          <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="churnReduction" min="0" max="2" step="0.1" value="1" oninput="updateChurnOutput();" onmouseup="updateChart();" />
+          <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="churnReduction" min="2" max="5" step="0.1" value="5" oninput="updateChurnOutput();" onmouseup="updateChart();" />
           <output class="ml-2" id="churnOutput">1</output>%
         </label>
     </div>
