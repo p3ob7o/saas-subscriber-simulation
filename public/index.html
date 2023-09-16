@@ -16,9 +16,17 @@
         </label>
         <label class="mb-4">
           Monthly Churn (%):
-          <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="churnReduction" min="2" max="5" step="0.1" value="5" oninput="updateChurnOutput();" onmouseup="updateChart();" />
-          <output class="ml-2" id="churnOutput">5</output>%
+          <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="churnReduction" min="0" max="5" step="0.1" value="5" oninput="updateChurnOutput();" onmouseup="updateChart();" />
+          <output class="ml-2" id="churnOutput">5.0</output>%
         </label>
+    </div>
+    <div>
+      Baseline:
+      <ul>
+          <li>50,000 subscribers at starting point.</li>
+          <li>1,500 net new subscribers per month.</li>
+          <li>5% monthly churn.</li>
+      </ul>
     </div>
     <div class="chart-card bg-gray-900 p-6 rounded shadow-lg">
       <canvas id="subscriberChart" width="400" height="200"></canvas>
