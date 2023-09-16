@@ -85,6 +85,8 @@ function renderChart(data, baselineData, yoyGrowthData) {
                       display: true,
                       text: 'Total Subscribers'
                   },
+                  min: 0,
+                  max: 500000,
                   beginAtZero: true
               },
               y1: {
