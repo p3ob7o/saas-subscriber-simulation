@@ -52,6 +52,15 @@ function updateChart() {
     const newSubscribersData = calculateSubscribers(acquisitionGrowth, churnReduction);
     renderChart(newSubscribersData);
   }
+
+  document.getElementById('acquisitionGrowth').oninput = function() {
+    document.getElementById('acquisitionOutput').value = this.value;
+}
+
+document.getElementById('churnReduction').oninput = function() {
+    document.getElementById('churnOutput').value = this.value;
+}
+
   
   window.onload = () => {
     updateChart();
