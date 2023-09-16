@@ -1,12 +1,10 @@
-function calculateSubscribers(acquisitionGrowth, churnReduction) {
+function calculateSubscribers(acquisitionGrowth, monthlyChurnRate) {
   const subscribers = [50000];
   let newSubscribers = 1500;
-  const initialChurnRate = 5;
 
   for (let i = 1; i <= 36; i++) {
       newSubscribers += newSubscribers * (acquisitionGrowth / 100);
-      let currentChurnRate = initialChurnRate - churnReduction;
-      let churningSubscribers = subscribers[i - 1] * (currentChurnRate / 100);
+      let churningSubscribers = subscribers[i - 1] * (monthlyChurnRate / 100);
       subscribers[i] = subscribers[i - 1] + newSubscribers - churningSubscribers;
   }
 
