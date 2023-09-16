@@ -24,9 +24,17 @@ function calculateBaselineSubscribers() {
   return subscribers;
 }
 
+function calculateYearOverYearGrowth(subscribers) {
+  const growthRates = [null, null, null, null, null, null, null, null, null, null, null, null];
+  for (let i = 12; i < subscribers.length; i++) {
+    growthRates[i] = ((subscribers[i] / subscribers[i - 12]) - 1) * 100;
+  }
+  return growthRates;
+}
+
 let subscriberChart;
 
-function renderChart(data, baselineData) {
+function renderChart(data, baselineData, yoyGrowthData) {
   const ctx = document.getElementById('subscriberChart').getContext('2d');
 
   if (subscriberChart) {
@@ -48,6 +56,13 @@ function renderChart(data, baselineData) {
                   label: 'Baseline',
                   data: baselineData,
                   borderColor: 'rgba(211, 211, 211, 1)',
+                  borderWidth: 1,
+                  pointRadius: 0
+              },
+              {
+                  label: 'Year-over-Year Growth Rate (%)',
+                  data: yoyGrowthData,
+                  borderColor: 'rgba(255, 165, 0, 1)',
                   borderWidth: 1,
                   pointRadius: 0
               }
@@ -80,7 +95,8 @@ function updateChart() {
 
   const newSubscribersData = calculateSubscribers(acquisitionGrowth, monthlyChurnRate);
   const baselineData = calculateBaselineSubscribers();
-  renderChart(newSubscribersData, baselineData);
+  const yoyGrowthData = calculateYearOverYearGrowth(newSubscribersData);
+  renderChart(newSubscribersData, baselineData, yoyGrowthData);
 }
 
 document.getElementById('acquisitionGrowth').oninput = function() {
