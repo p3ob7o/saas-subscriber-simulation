@@ -1,12 +1,13 @@
 function calculateSubscribers(acquisitionGrowth, churnReduction) {
   const subscribers = [50000];
   let newSubscribers = 1500;
-  let churningSubscribers = 1500;
+  const initialChurnRate = 5;
 
   for (let i = 1; i <= 36; i++) {
-    newSubscribers += newSubscribers * (acquisitionGrowth / 100);
-    churningSubscribers -= churningSubscribers * (churnReduction / 100);
-    subscribers[i] = subscribers[i - 1] + newSubscribers - churningSubscribers;
+      newSubscribers += newSubscribers * (acquisitionGrowth / 100);
+      let currentChurnRate = initialChurnRate - churnReduction;
+      let churningSubscribers = subscribers[i - 1] * (currentChurnRate / 100);
+      subscribers[i] = subscribers[i - 1] + newSubscribers - churningSubscribers;
   }
 
   return subscribers;
