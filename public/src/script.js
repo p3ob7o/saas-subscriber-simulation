@@ -147,13 +147,15 @@ function renderChart(data, baselineData, yoyGrowthData) {
 }
 
 function updateChart() {
+    updateBaselineData(); // Add this line to update the baseline data before rendering the chart
+
     const acquisitionGrowth = parseFloat(document.getElementById('acquisitionGrowth').value);
     const monthlyChurnRate = parseFloat(document.getElementById('churnReduction').value);
-  
+
     const newSubscribersData = calculateSubscribers(acquisitionGrowth, monthlyChurnRate);
     const baselineData = calculateBaselineSubscribers();
     const yoyGrowthData = calculateYearOverYearGrowth(newSubscribersData);
-  
+
     renderChart(newSubscribersData, baselineData, yoyGrowthData, startingSubscribers);
 }
 
