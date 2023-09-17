@@ -154,12 +154,12 @@ function updateChart() {
     const yoyGrowthData = calculateYearOverYearGrowth(newSubscribersData);
   
     renderChart(newSubscribersData, baselineData, yoyGrowthData, startingSubscribers);
-  }
-  
-  function updateBaselineData() {
+}
+
+function updateBaselineData() {
     startingSubscribers = parseInt(document.getElementById('startingSubscribers').value);
-    newSubscribersPerMonth = parseInt(document.getElementById('newSubscribersPerMonth').value);
-    initialMonthlyChurnRate = parseFloat(document.getElementById('initialMonthlyChurnRate').value);
+    newSubscribersPerMonth = parseInt(document.getElementById('netNewSubscribers').value);
+    initialMonthlyChurnRate = parseFloat(document.getElementById('initialMonthlyChurn').value);
   
     document.getElementById('baselineDataList').innerHTML = `
       <li>${startingSubscribers} subscribers at starting point.</li>
@@ -168,7 +168,7 @@ function updateChart() {
     `;
   
     updateChart();
-  }
+}
 
 document.getElementById('acquisitionGrowth').oninput = function() {
   document.getElementById('acquisitionOutput').textContent = parseFloat(this.value).toFixed(1);
