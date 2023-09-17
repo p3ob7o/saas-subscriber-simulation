@@ -190,6 +190,8 @@ document.getElementById('churnReduction').oninput = function() {
   }
 }
 
+document.getElementById('applyBaselineDataButton').addEventListener('click', updateBaselineData);
+
 window.onload = () => {
   updateChart();
 };
