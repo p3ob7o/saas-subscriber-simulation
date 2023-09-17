@@ -9,28 +9,28 @@
 <body class="bg-gray-800 text-white" style="font-family: monospace;">
 <div class="container mx-auto mt-10 p-6 bg-gray-900 rounded shadow-lg">
     <div class="flex w-1/1">
-        <div class="flex flex-col w-1/5" px-2>
+        <div class="flex flex-col w-1/5 px-2 items-start">
             <label class="py-2" >Starting Subscribers:</label>
-            <input type="number" step="1000" id="startingSubscribers" class="mb-2 bg-gray-700 text-white rounded p-2 w-1/2" value="50000" oninput="updateBaselineData(); updateChart();" />
+            <input type="number" step="1000" id="startingSubscribers" class="mb-2 bg-gray-700 text-white rounded p-2 w-1/2 mt-auto" value="50000" oninput="updateBaselineData(); updateChart();" />
         </div>
-        <div class="flex flex-col w-1/5" px-2>    
+        <div class="flex flex-col w-1/5 px-2 items-start">    
             <label class="py-2" >Net New Subscribers per Month:</label>
-            <input type="number" step="100" id="netNewSubscribers" class="mb-2 bg-gray-700 text-white rounded p-2  w-1/2" value="1500" oninput="updateBaselineData(); updateChart();" />
+            <input type="number" step="100" id="netNewSubscribers" class="mb-2 bg-gray-700 text-white rounded p-2 w-1/2 mt-auto" value="1500" oninput="updateBaselineData(); updateChart();" />
         </div>
-        <div class="flex flex-col w-1/5" px-2>    
+        <div class="flex flex-col w-1/5 px-2 items-start">    
             <label class="py-2" >Initial Monthly Churn (%):</label>
-            <input type="number" step="0.1" id="initialMonthlyChurn" class="mb-4 bg-gray-700 text-white rounded p-2  w-1/2" value="5" oninput="updateBaselineData(); updateChart();" />
+            <input type="number" step="0.1" id="initialMonthlyChurn" class="mb-4 bg-gray-700 text-white rounded p-2 w-1/2 mt-auto" value="5" oninput="updateBaselineData(); updateChart();" />
         </div>
-        <div class="flex flex-col p-2 w-1/5">
+        <div class="flex flex-col p-2 w-1/5 items-start">
             <label class="py-2" >Acquisition Growth (%):</label>
-            <div class="flex">
+            <div class="flex mt-auto">
                 <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="acquisitionGrowth" min="0" max="5" step="0.1" value="0" oninput="updateAcquisitionOutput(); updateChart();" />
                 <output class="ml-2" id="acquisitionOutput">0.0</output>%
             </div>
         </div>
-        <div class="flex flex-col p-2 w-1/5">
+        <div class="flex flex-col p-2 w-1/5 items-start">
             <label class="py-2" >Monthly Churn (%):</label>
-            <div class="flex">
+            <div class="flex mt-auto">
                 <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="churnReduction" min="0" max="5" step="0.1" value="5" oninput="updateChurnOutput(); updateChart();" />
                 <output class="ml-2" id="churnOutput">5.0</output>%
             </div>
