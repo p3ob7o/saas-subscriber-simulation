@@ -16,7 +16,6 @@ function calculateBaselineSubscribers() {
   let newSubscribers = 1500;
 
   for (let i = 1; i <= 60; i++) {
-      newSubscribers += newSubscribers * (1.5 / 100);
       let churningSubscribers = subscribers[i - 1] * (5 / 100);
       subscribers[i] = subscribers[i - 1] + newSubscribers - churningSubscribers;
   }
