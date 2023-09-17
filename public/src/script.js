@@ -160,14 +160,6 @@ function updateBaselineData() {
     startingSubscribers = parseInt(document.getElementById('startingSubscribers').value);
     newSubscribersPerMonth = parseInt(document.getElementById('netNewSubscribers').value);
     initialMonthlyChurnRate = parseFloat(document.getElementById('initialMonthlyChurn').value);
-  
-    document.getElementById('baselineDataList').innerHTML = `
-      <li>${startingSubscribers} subscribers at starting point.</li>
-      <li>${newSubscribersPerMonth} net new subscribers per month.</li>
-      <li>${initialMonthlyChurnRate}% monthly churn.</li>
-    `;
-  
-    updateChart();
 }
 
 document.getElementById('acquisitionGrowth').oninput = function() {
