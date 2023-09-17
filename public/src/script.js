@@ -111,11 +111,8 @@ function renderChart(data, baselineData, yoyGrowthData) {
                   },
                   min: -100000,
                   max: 500000,
-                  beginAtZero: true,
+                  beginAtZero: false,
                   ticks: {
-                      font: {
-                          family: 'monospace'
-                      },
                       callback: function(value, index, values) {
                         // Only display positive values
                         return value >= 0 ? value : null;
