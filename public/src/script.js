@@ -1,6 +1,10 @@
+let startingSubscribers = 50000;
+let newSubscribersPerMonth = 1500;
+let initialMonthlyChurnRate = 5;
+
 function calculateSubscribers(acquisitionGrowth, monthlyChurnRate) {
-  const subscribers = [50000];
-  let newSubscribers = 1500;
+  const subscribers = [startingSubscribers];
+  let newSubscribers = newSubscribersPerMonth;
 
   for (let i = 1; i <= 60; i++) {
       newSubscribers += newSubscribers * (acquisitionGrowth / 100);
@@ -12,11 +16,11 @@ function calculateSubscribers(acquisitionGrowth, monthlyChurnRate) {
 }
 
 function calculateBaselineSubscribers() {
-  const subscribers = [50000];
-  let newSubscribers = 1500;
+  const subscribers = [startingSubscribers];
+  let newSubscribers = newSubscribersPerMonth;
 
   for (let i = 1; i <= 60; i++) {
-      let churningSubscribers = subscribers[i - 1] * (5 / 100);
+      let churningSubscribers = subscribers[i - 1] * (initialMonthlyChurnRate / 100);
       subscribers[i] = subscribers[i - 1] + newSubscribers - churningSubscribers;
   }
 
@@ -142,14 +146,29 @@ function renderChart(data, baselineData, yoyGrowthData) {
 }
 
 function updateChart() {
-  const acquisitionGrowth = parseFloat(document.getElementById('acquisitionGrowth').value);
-  const monthlyChurnRate = parseFloat(document.getElementById('churnReduction').value);
-
-  const newSubscribersData = calculateSubscribers(acquisitionGrowth, monthlyChurnRate);
-  const baselineData = calculateBaselineSubscribers();
-  const yoyGrowthData = calculateYearOverYearGrowth(newSubscribersData);
-  renderChart(newSubscribersData, baselineData, yoyGrowthData);
-}
+    const acquisitionGrowth = parseFloat(document.getElementById('acquisitionGrowth').value);
+    const monthlyChurnRate = parseFloat(document.getElementById('churnReduction').value);
+  
+    const newSubscribersData = calculateSubscribers(acquisitionGrowth, monthlyChurnRate);
+    const baselineData = calculateBaselineSubscribers();
+    const yoyGrowthData = calculateYearOverYearGrowth(newSubscribersData);
+  
+    renderChart(newSubscribersData, baselineData, yoyGrowthData, startingSubscribers);
+  }
+  
+  function updateBaselineData() {
+    startingSubscribers = parseInt(document.getElementById('startingSubscribers').value);
+    newSubscribersPerMonth = parseInt(document.getElementById('newSubscribersPerMonth').value);
+    initialMonthlyChurnRate = parseFloat(document.getElementById('initialMonthlyChurnRate').value);
+  
+    document.getElementById('baselineDataList').innerHTML = `
+      <li>${startingSubscribers} subscribers at starting point.</li>
+      <li>${newSubscribersPerMonth} net new subscribers per month.</li>
+      <li>${initialMonthlyChurnRate}% monthly churn.</li>
+    `;
+  
+    updateChart();
+  }
 
 document.getElementById('acquisitionGrowth').oninput = function() {
   document.getElementById('acquisitionOutput').textContent = parseFloat(this.value).toFixed(1);
