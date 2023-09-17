@@ -8,22 +8,6 @@
 </head>
 <body class="bg-gray-800 text-white" style="font-family: monospace;">
 <div class="container mx-auto mt-10 p-6 bg-gray-900 rounded shadow-lg">
-    <div class="flex flex-col items-center">
-        <div class="flex flex-col mb-4">
-            <label>Acquisition Growth (%):</label>
-            <div class="flex">
-                <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="acquisitionGrowth" min="0" max="5" step="0.1" value="0" oninput="updateAcquisitionOutput(); updateChart();" />
-                <output class="ml-2" id="acquisitionOutput">0.0</output>%
-            </div>
-        </div>
-        <div class="flex flex-col mb-4">
-            <label>Monthly Churn (%):</label>
-            <div class="flex">
-                <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="churnReduction" min="0" max="5" step="0.1" value="5" oninput="updateChurnOutput(); updateChart();" />
-                <output class="ml-2" id="churnOutput">5.0</output>%
-            </div>
-        </div>
-    </div>
     <div>
         Baseline:
         <div class="flex">
@@ -45,6 +29,22 @@
             </div>
         </div>
     </div>    
+    <div class="flex flex-col items-center">
+        <div class="flex flex-col mb-4">
+            <label>Acquisition Growth (%):</label>
+            <div class="flex">
+                <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="acquisitionGrowth" min="0" max="5" step="0.1" value="0" oninput="updateAcquisitionOutput(); updateChart();" />
+                <output class="ml-2" id="acquisitionOutput">0.0</output>%
+            </div>
+        </div>
+        <div class="flex flex-col mb-4">
+            <label>Monthly Churn (%):</label>
+            <div class="flex">
+                <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="churnReduction" min="0" max="5" step="0.1" value="5" oninput="updateChurnOutput(); updateChart();" />
+                <output class="ml-2" id="churnOutput">5.0</output>%
+            </div>
+        </div>
+    </div>
     <div class="chart-card bg-gray-900 p-6 rounded shadow-lg">
       <canvas id="subscriberChart" width="400" height="200"></canvas>
     </div>
