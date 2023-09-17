@@ -13,13 +13,13 @@
             <label>Acquisition Growth (%):</label>
             <div class="flex">
                 <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="acquisitionGrowth" min="0" max="5" step="0.1" value="0" oninput="updateAcquisitionOutput(); updateChart();" />
-                <output class="ml-2" id="acquisitionOutput">0</output>%
+                <output class="ml-2" id="acquisitionOutput">0.0</output>%
             </div>
         </div>
         <div class="flex flex-col mb-4">
             <label>Monthly Churn (%):</label>
             <div class="flex">
-                <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="churnReduction" min="2" max="5" step="0.1" value="5" oninput="updateChurnOutput(); updateChart();" />
+                <input type="range" class="slider bg-gray-700 appearance-none h-2 w-64 rounded-full" id="churnReduction" min="0" max="5" step="0.1" value="5" oninput="updateChurnOutput(); updateChart();" />
                 <output class="ml-2" id="churnOutput">5.0</output>%
             </div>
         </div>
