@@ -65,7 +65,7 @@ function renderChart(data, baselineData, yoyGrowthData) {
                   yAxisID: 'y',
               },
               {
-                  label: 'Year-over-Year Growth Rate (%)',
+                  label: 'YoY Growth Rate (%)',
                   data: yoyGrowthData,
                   borderColor: 'rgba(255, 165, 0, 1)',
                   borderWidth: 1,
