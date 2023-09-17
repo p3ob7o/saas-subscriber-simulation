@@ -81,6 +81,7 @@ function renderChart(data, baselineData, yoyGrowthData) {
                   }
               }
           },
+          animation: false,
           scales: {
               x: {
                   title: {
