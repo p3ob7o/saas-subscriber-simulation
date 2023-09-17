@@ -47,7 +47,7 @@ function renderChart(data, baselineData, yoyGrowthData) {
   subscriberChart = new Chart(ctx, {
       type: 'line',
       data: {
-          labels: [...Array(61).keys()].map(x => x + ' months'),
+          labels: [...Array(61).keys()].map(x => x),
           datasets: [
               {
                   label: 'Number of Subscribers',
@@ -129,7 +129,7 @@ function renderChart(data, baselineData, yoyGrowthData) {
                       }
                   },
                   beginAtZero: false,
-                  min: -20,
+                  min: -40,
                   max: 80,
                   grid: {
                       drawOnChartArea: false,
