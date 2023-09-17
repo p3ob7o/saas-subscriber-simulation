@@ -7,9 +7,9 @@ function calculateSubscribers(acquisitionGrowth, monthlyChurnRate) {
   let newSubscribers = newSubscribersPerMonth;
 
   for (let i = 1; i <= 60; i++) {
-      newSubscribers += newSubscribers * (acquisitionGrowth / 100);
-      let churningSubscribers = subscribers[i - 1] * (monthlyChurnRate / 100);
-      subscribers[i] = subscribers[i - 1] + newSubscribers - churningSubscribers;
+    newSubscribers += newSubscribers * (acquisitionGrowth / 100);
+    let churningSubscribers = subscribers[i - 1] * (monthlyChurnRate / 100);
+    subscribers[i] = subscribers[i - 1] + newSubscribers - churningSubscribers;
   }
 
   return subscribers;
@@ -20,8 +20,8 @@ function calculateBaselineSubscribers() {
   let newSubscribers = newSubscribersPerMonth;
 
   for (let i = 1; i <= 60; i++) {
-      let churningSubscribers = subscribers[i - 1] * (initialMonthlyChurnRate / 100);
-      subscribers[i] = subscribers[i - 1] + newSubscribers - churningSubscribers;
+    let churningSubscribers = subscribers[i - 1] * (initialMonthlyChurnRate / 100);
+    subscribers[i] = subscribers[i - 1] + newSubscribers - churningSubscribers;
   }
 
   return subscribers;
@@ -35,45 +35,65 @@ function calculateYearOverYearGrowth(subscribers) {
   return growthRates;
 }
 
+function calculateNewSubscribers(acquisitionGrowth, monthlyChurnRate) {
+  const newSubscribersData = [newSubscribersPerMonth];
+  let newSubscribers = newSubscribersPerMonth;
+
+  for (let i = 1; i <= 60; i++) {
+    newSubscribers += newSubscribers * (acquisitionGrowth / 100);
+    newSubscribersData[i] = newSubscribers;
+  }
+
+  return newSubscribersData;
+}
+
 let subscriberChart;
 
-function renderChart(data, baselineData, yoyGrowthData) {
+function renderChart(data, baselineData, yoyGrowthData, newSubscribersMonthlyData) {
   const ctx = document.getElementById('subscriberChart').getContext('2d');
 
   if (subscriberChart) {
-      subscriberChart.destroy();
+    subscriberChart.destroy();
   }
 
   subscriberChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-          labels: [...Array(61).keys()].map(x => x),
-          datasets: [
-            {
-                label: 'Baseline',
-                data: baselineData,
-                borderColor: 'rgba(211, 211, 211, 1)',
-                borderWidth: 1,
-                pointRadius: 0,
-                yAxisID: 'y',
-            },
-              {
-                  label: 'Projection',
-                  data: data,
-                  borderColor: 'rgba(75, 192, 192, 1)',
-                  borderWidth: 1,
-                  yAxisID: 'y',
-              },
-              {
-                  label: 'YoY Growth Rate (%)',
-                  data: yoyGrowthData,
-                  borderColor: 'rgba(255, 165, 0, 1)',
-                  borderWidth: 1,
-                  pointRadius: 0,
-                  yAxisID: 'y1',
-              }
-          ]
-      },
+    type: 'line',
+    data: {
+      labels: [...Array(61).keys()].map(x => x),
+      datasets: [
+        {
+          label: 'Baseline',
+          data: baselineData,
+          borderColor: 'rgba(211, 211, 211, 1)',
+          borderWidth: 1,
+          pointRadius: 0,
+          yAxisID: 'y',
+        },
+        {
+          label: 'Projection',
+          data: data,
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1,
+          yAxisID: 'y',
+        },
+        {
+          label: 'YoY Growth Rate (%)',
+          data: yoyGrowthData,
+          borderColor: 'rgba(255, 165, 0, 1)',
+          borderWidth: 1,
+          pointRadius: 0,
+          yAxisID: 'y1',
+        },
+        {
+          label: 'New Subscribers',
+          data: newSubscribersMonthlyData,
+          borderColor: 'rgba(153, 102, 255, 1)',
+          borderWidth: 1,
+          pointRadius: 0,
+          yAxisID: 'y',
+        }
+      ]
+    },
       options: {
           plugins: {
               legend: {
@@ -153,36 +173,37 @@ function updateChart() {
     const newSubscribersData = calculateSubscribers(acquisitionGrowth, monthlyChurnRate);
     const baselineData = calculateBaselineSubscribers();
     const yoyGrowthData = calculateYearOverYearGrowth(newSubscribersData);
+    const newSubscribersMonthlyData = calculateNewSubscribers(acquisitionGrowth, monthlyChurnRate);
   
-    renderChart(newSubscribersData, baselineData, yoyGrowthData, startingSubscribers);
-}
-
-function updateBaselineData() {
+    renderChart(newSubscribersData, baselineData, yoyGrowthData, newSubscribersMonthlyData);
+  }
+  
+  function updateBaselineData() {
     startingSubscribers = parseInt(document.getElementById('startingSubscribers').value);
     newSubscribersPerMonth = parseInt(document.getElementById('netNewSubscribers').value);
     initialMonthlyChurnRate = parseFloat(document.getElementById('initialMonthlyChurn').value);
-}
-
-document.getElementById('acquisitionGrowth').oninput = function() {
-  document.getElementById('acquisitionOutput').textContent = parseFloat(this.value).toFixed(1);
-  updateChart();
-  if (this.value > 3) {
-    this.classList.add('bg-red-500');
-  } else {
-    this.classList.remove('bg-red-500');
   }
-}
-
-document.getElementById('churnReduction').oninput = function() {
-  document.getElementById('churnOutput').textContent = parseFloat(this.value).toFixed(1);
-  updateChart();
-  if (this.value < 2) {
-    this.classList.add('bg-red-500');
-  } else {
-    this.classList.remove('bg-red-500');
+  
+  document.getElementById('acquisitionGrowth').oninput = function() {
+    document.getElementById('acquisitionOutput').textContent = parseFloat(this.value).toFixed(1);
+    updateChart();
+    if (this.value > 3) {
+      this.classList.add('bg-red-500');
+    } else {
+      this.classList.remove('bg-red-500');
+    }
   }
-}
-
-window.onload = () => {
-  updateChart();
-};
+  
+  document.getElementById('churnReduction').oninput = function() {
+    document.getElementById('churnOutput').textContent = parseFloat(this.value).toFixed(1);
+    updateChart();
+    if (this.value < 2) {
+      this.classList.add('bg-red-500');
+    } else {
+      this.classList.remove('bg-red-500');
+    }
+  }
+  
+  window.onload = () => {
+    updateChart();
+  };
