@@ -49,19 +49,19 @@ function renderChart(data, baselineData, yoyGrowthData) {
       data: {
           labels: [...Array(61).keys()].map(x => x),
           datasets: [
+            {
+                label: 'Baseline',
+                data: baselineData,
+                borderColor: 'rgba(211, 211, 211, 1)',
+                borderWidth: 1,
+                pointRadius: 0,
+                yAxisID: 'y',
+            },
               {
-                  label: 'Number of Subscribers',
+                  label: 'Projection',
                   data: data,
                   borderColor: 'rgba(75, 192, 192, 1)',
                   borderWidth: 1,
-                  yAxisID: 'y',
-              },
-              {
-                  label: 'Baseline',
-                  data: baselineData,
-                  borderColor: 'rgba(211, 211, 211, 1)',
-                  borderWidth: 1,
-                  pointRadius: 0,
                   yAxisID: 'y',
               },
               {
