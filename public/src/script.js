@@ -199,6 +199,11 @@ function updateChart() {
     
     document.getElementById('churnReduction').oninput = function() {
     document.getElementById('churnOutput').textContent = parseFloat(this.value).toFixed(1);
+    let a = parseFloat(this.value);
+        let b = 1 + (a / 100);
+        let c = b ** 12;
+        let d = (c - 1) * 100;
+        document.getElementById('yearlyChurnOutput').textContent = d;
     updateChart();
     if (this.value < 2) {
         this.classList.add('bg-red-500');
