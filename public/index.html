@@ -27,10 +27,17 @@
             <output class="ml-2" id="acquisitionOutput">0.0</output>%
         </div>
         <div class="flex flex-col p-2 w-1/5 h-full items-start border border-red-500">
-            <label class="py-2" >Monthly Churn (%):</label>
-            <input type="range" class="slider bg-gray-700 appearance-none h-2 w-48 rounded-full" id="churnReduction" min="0" max="5" step="0.1" value="5" oninput="updateChurnOutput(); updateChart();" />
-            <output class="ml-2" id="churnOutput">5.0</output>%
+            <label class="py-2">Monthly Churn (%):</label>
+            <input type="range" class="slider bg-gray-700 appearance-none h-2 w-48 rounded-full" id="churnReduction" min="0" max="5" step="0.1" value="5" oninput="updateChurnOutput(); updateChart();" style="background: linear-gradient(to right, #1F2937 0%, #1F2937 calc((var(--value) - var(--min)) / (var(--max) - var(--min)) * 100%), #9CA3AF calc((var(--value) - var(--min)) / (var(--max) - var(--min)) * 100%), #9CA3AF 100%);" />
+            <script>
+                const churnReductionSlider = document.getElementById('churnReduction');
+                churnReductionSlider.setAttribute('data-value', churnReductionSlider.value);
+                churnReductionSlider.addEventListener('input', function () {
+                    this.setAttribute('data-value', this.value);
+                });
+            </script>
         </div>
+        
     </div>
     <div class="chart-card bg-gray-900 p-6 rounded shadow-lg">
       <canvas id="subscriberChart" width="400" height="200"></canvas>

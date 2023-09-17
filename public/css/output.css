@@ -573,16 +573,8 @@ video {
   margin-right: auto;
 }
 
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
 .mb-4 {
   margin-bottom: 1rem;
-}
-
-.mb-auto {
-  margin-bottom: auto;
 }
 
 .ml-2 {
@@ -703,4 +695,30 @@ video {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+#churnReduction::-webkit-slider-thumb {
+  width: 20px;
+  /* Adjust width as necessary */
+  height: 20px;
+  /* Adjust height as necessary */
+  background-color: blue;
+  /* Change to your preferred color */
+  border-radius: 50%;
+  /* Makes the thumb round */
+  -webkit-appearance: none;
+          appearance: none;
+  position: relative;
+}
+
+#churnReduction::-webkit-slider-thumb::after {
+  content: attr(data-value) '%';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  /* Adjust color as necessary */
+  font-size: 0.75rem;
+  /* Adjust font size as necessary */
 }
