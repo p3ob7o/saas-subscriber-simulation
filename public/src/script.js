@@ -109,15 +109,18 @@ function renderChart(data, baselineData, yoyGrowthData) {
                           family: 'monospace'
                       }
                   },
-                  min: 0,
+                  min: -100000,
                   max: 500000,
                   beginAtZero: true,
                   ticks: {
                       font: {
                           family: 'monospace'
+                      },
+                      callback: function(value, index, values) {
+                        // Only display positive values
+                        return value >= 0 ? value : null;
                       }
-                  }
-              },
+                  },
               y1: {
                   type: 'linear',
                   position: 'right',
@@ -129,8 +132,8 @@ function renderChart(data, baselineData, yoyGrowthData) {
                       }
                   },
                   beginAtZero: false,
-                  min: -40,
-                  max: 80,
+                  min: -20,
+                  max: 100,
                   grid: {
                       drawOnChartArea: false,
                   },
