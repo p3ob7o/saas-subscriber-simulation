@@ -186,12 +186,3 @@ document.getElementById('churnReduction').oninput = function() {
 window.onload = () => {
   updateChart();
 };
-
-const churnReductionSlider = document.getElementById('churnReduction');
-if (churnReductionSlider) {
-  churnReductionSlider.setAttribute('data-value', churnReductionSlider.value);
-  churnReductionSlider.addEventListener('input', function () {
-    this.setAttribute('data-value', this.value);
-    document.getElementById('churnOutput').textContent = this.value;
-  });
-}
