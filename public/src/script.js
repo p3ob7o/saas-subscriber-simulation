@@ -117,6 +117,7 @@ function renderChart(data, baselineData, yoyGrowthData) {
                         // Only display positive values
                         return value >= 0 ? value : null;
                       }
+                    }
                   },
               y1: {
                   type: 'linear',
