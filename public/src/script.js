@@ -159,6 +159,11 @@ document.getElementById('acquisitionGrowth').oninput = function() {
 document.getElementById('churnReduction').oninput = function() {
   document.getElementById('churnOutput').textContent = parseFloat(this.value).toFixed(1);
   updateChart();
+  if (this.value < 2) {
+    this.classList.add('bg-red-500');
+  } else {
+    this.classList.remove('bg-red-500');
+  }
 }
 
 window.onload = () => {
