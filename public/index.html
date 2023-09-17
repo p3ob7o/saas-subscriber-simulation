@@ -26,6 +26,7 @@
             <div class="flex h-full">
                 <input type="range" class="slider bg-gray-700 appearance-none h-2 w-48 rounded-full mt-auto mb-auto" id="acquisitionGrowth" min="0" max="5" step="0.1" value="0" oninput="updateAcquisitionOutput(); updateChart();" />
                 <output class="ml-2 mt-auto mb-auto" id="acquisitionOutput">0.0</output>%
+                <output class="ml-2 mt-auto mb-auto" id="yearlyAcquisitionOutput">0.0</output>%
             </div>
         </div>
         <div class="flex flex-col px-2 w-1/5 h-full items-start">
@@ -33,6 +34,7 @@
             <div class="flex h-full">
                 <input type="range" class="slider bg-gray-700 appearance-none h-2 w-48 rounded-full mt-auto mb-auto" id="churnReduction" min="0" max="5" step="0.1" value="5" oninput="updateChurnOutput(); updateChart();" />
                 <output class="ml-2 mt-auto mb-auto" id="churnOutput">5.0</output>%
+                <output class="ml-2 mt-auto mb-auto" id="yearlyChurnOutput">5.0</output>%
             </div>
         </div>
     </div>

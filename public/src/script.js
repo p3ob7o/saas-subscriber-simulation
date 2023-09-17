@@ -174,34 +174,39 @@ function updateChart() {
     const newSubscribersMonthlyData = calculateNewSubscribers(acquisitionGrowth, monthlyChurnRate);
   
     renderChart(newSubscribersData, baselineData, yoyGrowthData, newSubscribersMonthlyData);
-  }
+}
   
   function updateBaselineData() {
     startingSubscribers = parseInt(document.getElementById('startingSubscribers').value);
     newSubscribersPerMonth = parseInt(document.getElementById('netNewSubscribers').value);
     initialMonthlyChurnRate = parseFloat(document.getElementById('initialMonthlyChurn').value);
-  }
+}
   
-  document.getElementById('acquisitionGrowth').oninput = function() {
-    document.getElementById('acquisitionOutput').textContent = parseFloat(this.value).toFixed(1);
-    updateChart();
-    if (this.value > 3) {
-      this.classList.add('bg-red-500');
-    } else {
-      this.classList.remove('bg-red-500');
+    document.getElementById('acquisitionGrowth').oninput = function() {
+        document.getElementById('acquisitionOutput').textContent = parseFloat(this.value).toFixed(1);
+        let a = parseFloat(this.value);
+        let b = 1 + (a / 100);
+        let c = b ** 12;
+        let d = (c - 1) * 100;
+        document.getElementById('yearlyAcquisitionOutput').textContent = d;
+        updateChart();
+        if (this.value > 3) {
+            this.classList.add('bg-red-500');
+        } else {
+            this.classList.remove('bg-red-500');
+        }
     }
-  }
-  
-  document.getElementById('churnReduction').oninput = function() {
+    
+    document.getElementById('churnReduction').oninput = function() {
     document.getElementById('churnOutput').textContent = parseFloat(this.value).toFixed(1);
     updateChart();
     if (this.value < 2) {
-      this.classList.add('bg-red-500');
+        this.classList.add('bg-red-500');
     } else {
-      this.classList.remove('bg-red-500');
+        this.classList.remove('bg-red-500');
     }
-  }
-  
-  window.onload = () => {
+    }
+    
+    window.onload = () => {
     updateChart();
-  };
+    };
