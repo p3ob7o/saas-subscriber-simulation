@@ -72,29 +72,57 @@ function renderChart(data, baselineData, yoyGrowthData) {
           ]
       },
       options: {
+          plugins: {
+              legend: {
+                  labels: {
+                      font: {
+                          family: 'monospace'
+                      }
+                  }
+              }
+          },
           scales: {
               x: {
                   title: {
                       display: true,
-                      text: 'Months'
+                      text: 'Months',
+                      font: {
+                          family: 'monospace'
+                      }
                   },
-                  beginAtZero: true
+                  beginAtZero: true,
+                  ticks: {
+                      font: {
+                          family: 'monospace'
+                      }
+                  }
               },
               y: {
                   title: {
                       display: true,
-                      text: 'Total Subscribers'
+                      text: 'Total Subscribers',
+                      font: {
+                          family: 'monospace'
+                      }
                   },
                   min: 0,
                   max: 500000,
-                  beginAtZero: true
+                  beginAtZero: true,
+                  ticks: {
+                      font: {
+                          family: 'monospace'
+                      }
+                  }
               },
               y1: {
                   type: 'linear',
                   position: 'right',
                   title: {
                       display: true,
-                      text: 'Growth Rate (%)'
+                      text: 'Growth Rate (%)',
+                      font: {
+                          family: 'monospace'
+                      }
                   },
                   beginAtZero: false,
                   min: -20,
@@ -102,6 +130,11 @@ function renderChart(data, baselineData, yoyGrowthData) {
                   grid: {
                       drawOnChartArea: false,
                   },
+                  ticks: {
+                      font: {
+                          family: 'monospace'
+                      }
+                  }
               }
           }
       }
@@ -120,10 +153,12 @@ function updateChart() {
 
 document.getElementById('acquisitionGrowth').oninput = function() {
   document.getElementById('acquisitionOutput').textContent = parseFloat(this.value).toFixed(1);
+  updateChart();
 }
 
 document.getElementById('churnReduction').oninput = function() {
   document.getElementById('churnOutput').textContent = parseFloat(this.value).toFixed(1);
+  updateChart();
 }
 
 window.onload = () => {
