@@ -36,12 +36,12 @@ function calculateYearOverYearGrowth(subscribers) {
 }
 
 function calculateNewSubscribers(acquisitionGrowth, monthlyChurnRate) {
-  const newSubscribersData = [newSubscribersPerMonth];
+  const newSubscribersData = [Math.round(newSubscribersPerMonth)];
   let newSubscribers = newSubscribersPerMonth;
 
   for (let i = 1; i <= 60; i++) {
     newSubscribers += newSubscribers * (acquisitionGrowth / 100);
-    newSubscribersData[i] = newSubscribers;
+    newSubscribersData[i] = Math.round(newSubscribers);
   }
 
   return newSubscribersData;
@@ -81,7 +81,6 @@ function renderChart(data, baselineData, yoyGrowthData, newSubscribersMonthlyDat
           data: yoyGrowthData,
           borderColor: 'rgba(255, 165, 0, 1)',
           borderWidth: 1,
-          pointRadius: 0,
           yAxisID: 'y1',
         },
         {
@@ -89,7 +88,6 @@ function renderChart(data, baselineData, yoyGrowthData, newSubscribersMonthlyDat
           data: newSubscribersMonthlyData,
           borderColor: 'rgba(153, 102, 255, 1)',
           borderWidth: 1,
-          pointRadius: 0,
           yAxisID: 'y',
         }
       ]
