@@ -188,12 +188,10 @@ window.onload = () => {
 };
 
 const churnReductionSlider = document.getElementById('churnReduction');
-churnReductionSlider.style.setProperty('--min', churnReductionSlider.min);
-churnReductionSlider.style.setProperty('--max', churnReductionSlider.max);
-churnReductionSlider.style.setProperty('--value', churnReductionSlider.value);
-
-churnReductionSlider.addEventListener('input', function () {
-    this.style.setProperty('--value', this.value);
-    updateChurnOutput(); 
-    updateChart();
-});
+if (churnReductionSlider) {
+  churnReductionSlider.setAttribute('data-value', churnReductionSlider.value);
+  churnReductionSlider.addEventListener('input', function () {
+    this.setAttribute('data-value', this.value);
+    document.getElementById('churnOutput').textContent = this.value;
+  });
+}
