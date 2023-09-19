@@ -5,7 +5,7 @@ let initialMonthlyChurnRate = 4;
 function calculateMetrics(startingSubscribersCount, newSubscribersCountPerMonth, acquisitionGrowthRate, monthlyChurnRate) {
     const totalSubscribersArray = [startingSubscribersCount];
     const newSubscribersDataArray = [Math.round(newSubscribersCountPerMonth)];
-    const churnedSubscribersArray = [startingSubscribersCount * (monthlyChurnRate / 100)]; // Calculating churn for the first month
+    const churnedSubscribersArray = [(startingSubscribersCount * (monthlyChurnRate / 100)) * -1]; // Calculating churn for the first month
     const growthRatesArray = [null, null, null, null, null, null, null, null, null, null, null, null];
   
     let newSubscribersCount = newSubscribersCountPerMonth;
@@ -16,7 +16,7 @@ function calculateMetrics(startingSubscribersCount, newSubscribersCountPerMonth,
   
       totalSubscribersArray[i] = totalSubscribersArray[i - 1] + newSubscribersCount - churningSubscribersCount;
       newSubscribersDataArray[i] = newSubscribersCount;
-      churnedSubscribersArray[i] = churningSubscribersCount;
+      churnedSubscribersArray[i] = churningSubscribersCount * -1;
     }
   
     for (let i = 12; i < totalSubscribersArray.length; i++) {
@@ -119,11 +119,11 @@ function renderChart(data, yoyGrowthData, newSubscribersMonthlyData, churnedSubs
               font: {
                 family: 'monospace',
                 color: '#303030'
-              },
+              }/* ,
               callback: function(value, index, values) {
                 // Only display positive values
                 return value >= 0 ? value : null;
-              }
+              } */
             },
             grid: {
               color: '#303030'
